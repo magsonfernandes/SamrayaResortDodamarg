@@ -1,5 +1,5 @@
 import nodemailer from "nodemailer";
-import type { SendMailOptions } from "nodemailer";
+import type { SendMailOptions, Transporter } from "nodemailer";
 import { getSmtpPasswordFromEnv } from "@/lib/mailEnv";
 
 const MAIL_CANONICAL_HOST = "mail.ghdhotels.in";
@@ -135,7 +135,7 @@ function isConnectionError(err: unknown): boolean {
 }
 
 async function sendMailAttempt(
-  transport: nodemailer.Transporter,
+  transport: Transporter,
   mail: SendMailOptions,
 ): Promise<void> {
   let timer: ReturnType<typeof setTimeout> | undefined;
